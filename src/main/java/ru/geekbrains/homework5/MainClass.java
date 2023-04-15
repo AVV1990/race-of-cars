@@ -2,6 +2,7 @@ package ru.geekbrains.homework5;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.Semaphore;
 
 public class MainClass {
     public static final int CARS_COUNT = 4;
@@ -19,8 +20,6 @@ public class MainClass {
             cars[i] = new Car(race, 20 + (int) (Math.random() * 10), barrier);
         }
 
-
-
         for (int i = 0; i < cars.length; i++) {
             new Thread(cars[i]).start();
         }
@@ -30,7 +29,6 @@ public class MainClass {
             System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
             barrier.await();
             barrier.await();
-//            startSignal.countDown(); // сигнал к началу гонки
 
             System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
         }   catch (InterruptedException | BrokenBarrierException e) {
